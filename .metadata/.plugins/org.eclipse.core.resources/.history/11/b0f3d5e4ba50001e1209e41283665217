@@ -1,0 +1,21 @@
+package game;
+
+import java.util.Random;
+
+public class TakePinsGame {
+
+	public static void main(String[] args) {
+
+		Board board = new Board(); // Create a new board object.
+
+		System.out.println("Created board with " + board.getNoPins() + " pins.");
+
+		Player human = new HumanPlayer(); // Create new player ob
+
+		System.out.println("Created user with userId " + playerman.getUserId());
+
+		Player computer = new ComputerPlayer("AIPlayer");
+
+	}
+
+}

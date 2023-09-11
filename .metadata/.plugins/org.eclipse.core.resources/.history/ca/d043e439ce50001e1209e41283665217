@@ -1,0 +1,50 @@
+package game;
+
+import java.util.Random;
+
+import javax.swing.JOptionPane;
+
+public class TakePinsGame {
+	
+	public static String lastTaker;
+
+	public static void main(String[] args) {
+		
+
+		Board board = new Board(); // Create a new board object.
+
+		//JOptionPane.showMessageDialog(null,"Created board with " + board.getNoPins() + " pins.");
+
+		Player human = new HumanPlayer("HumanPlayer"); // Create new player ob
+
+		//System.out.println("Created user with userId " + human.getUserId());
+
+		Player computer = new ComputerPlayer("ComputerPlayer");
+		
+		//System.out.println("");
+		UserInterface.printMessage("A game is starting with " + board.initialPins +  " pins!");
+		//System.out.println("--------------------------------------------------------");
+		
+		while (board.noPins > 0) {
+			UserInterface.printMessage("Human took " + human.takePins(board) +  " pins.");
+			UserInterface.printMessage("There are " + board.noPins +  " left.");
+
+			
+			if (board.noPins <= 0) {
+				UserInterface.printMessage("Human wins!");
+				return;
+			}
+			
+			UserInterface.printMessage("Computer took " + computer.takePins(board) +  " pins.");
+
+			if (board.noPins <= 0) {
+				UserInterface.printMessage("Computer wins!");
+				return;
+			}
+			
+			UserInterface.printMessage("There are " + board.noPins +  " left.");
+		}
+		
+	}
+
+}

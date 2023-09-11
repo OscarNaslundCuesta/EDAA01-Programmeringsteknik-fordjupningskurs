@@ -1,0 +1,41 @@
+package game;
+
+import java.util.Scanner;
+
+
+public class Player {
+	
+    public String userId;
+
+
+	public Player() {
+		Scanner scanner = new Scanner(System.in);
+    	System.out.println("What is your name?: ");
+    	this.userId = scanner.next();
+    	scanner.close();
+    	System.out.println("Your userId whas set to: " + this.userId);
+	}
+	
+	public String getUserId() {
+    	System.out.println("getUserId() returning userId = " + this.userId);
+        return this.userId;
+    }
+	
+	public void takePins(Board) {
+	// This method reduces the noPins by 1 or 2
+	Scanner scanner = new Scanner(System.in);
+	
+	System.out.println("How many pins do you want to take?:");
+    int pinsToTake1 = scanner.nextInt();
+	
+	
+	if (noPins < 2) {  // We ensure that the number of pins doesn't become negative.
+		System.out.println("You can only take 1 or 2 pins. Try again...");
+    }
+    noPins -= pinsToTake1;
+    if (noPins < 0) {  // We ensure that the number of pins doesn't become negative.
+        noPins = 0;
+    }
+}
+
+}

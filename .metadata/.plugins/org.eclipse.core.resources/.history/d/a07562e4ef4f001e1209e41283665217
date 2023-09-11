@@ -1,0 +1,44 @@
+package game;
+
+import java.util.Scanner;
+import java.util.Random;
+
+public class Board {
+
+    private int noPins;  // number of pins
+    private int initialPins;
+    
+    public Board() {
+    	// Initialize board with a random number of pins between 1 and 20.
+        Random random = new Random();
+        this.initialPins = random.nextInt(20) + 1;
+    }
+
+    // This method sets up the initial number of pins
+    public void setUp(int initialPins) {
+        noPins = initialPins;
+    }
+
+    
+    public void takePins(int pinsToTake) {
+    	// This method reduces the noPins by 1 or 2
+    	Scanner scanner = new Scanner(System.in);
+    	
+    	System.out.println("How many pins do you want to take?:");
+        int pinsToTake1 = scanner.nextInt();
+    	
+    	
+    	if (noPins < 2) {  // We ensure that the number of pins doesn't become negative.
+    		System.out.println("You can only take 1 or 2 pins. Try again...");
+        }
+        noPins -= pinsToTake1;
+        if (noPins < 0) {  // We ensure that the number of pins doesn't become negative.
+            noPins = 0;
+        }
+    }
+
+    // This method returns the current number of pins.
+    public int getNoPins() {
+        return noPins;
+    }
+}

@@ -1,0 +1,17 @@
+package game;
+
+import java.util.Random;
+
+public class ComputerPlayer extends Player {
+	
+	public ComputerPlayer(String userId) {
+		super(userId);
+	}
+
+	public int takePins(Board board) {
+		Random random = new Random();
+		int randomNum = random.nextInt(2) + 1;
+		board.takePins(randomNum);
+		return randomNum;
+	}
+}

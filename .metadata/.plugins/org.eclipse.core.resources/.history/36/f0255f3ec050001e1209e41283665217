@@ -1,0 +1,48 @@
+package game;
+
+import java.util.Random;
+
+public class TakePinsGame {
+	
+	public static String lastTaker;
+
+	public static void main(String[] args) {
+		
+
+		Board board = new Board(); // Create a new board object.
+
+		System.out.println("Created board with " + board.getNoPins() + " pins.");
+
+		Player human = new HumanPlayer("HumanPlayer"); // Create new player ob
+
+		System.out.println("Created user with userId " + human.getUserId());
+
+		Player computer = new ComputerPlayer("ComputerPlayer");
+		
+		System.out.println("");
+		System.out.println("A game is starting with " + board.initialPins +  " pins!");
+		System.out.println("--------------------------------------------------------");
+		
+		while (board.noPins > 0) {
+			System.out.println("Human took " + human.takePins(board) +  " pins.");
+			System.out.println("There are " + board.noPins +  " left.");
+
+			
+			if (board.noPins <= 0) {
+				System.out.println("Human wins!");
+				return;
+			}
+			
+			System.out.println("Computer took " + computer.takePins(board) +  " pins.");
+
+			if (board.noPins <= 0) {
+				System.out.println("Computer wins!");
+				return;
+			}
+			
+			System.out.println("There are " + board.noPins +  " left.");
+		}
+		
+	}
+
+}

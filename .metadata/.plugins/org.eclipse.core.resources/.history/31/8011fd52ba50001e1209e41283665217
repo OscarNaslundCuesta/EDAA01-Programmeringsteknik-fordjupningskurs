@@ -1,0 +1,26 @@
+package game;
+
+import java.util.Scanner;
+
+public class HumanPlayer extends Player {
+	Scanner scanner = new Scanner(System.in);
+
+	public HumanPlayer(String userId) {
+		super();
+	}
+
+	public void takePins(Board board) {
+		// This method reduces the noPins by 1 or 2
+
+		System.out.println("How many pins do you want to take?:");
+		int pinsToTake = scanner.nextInt();
+
+		if (pinsToTake == 1 || pinsToTake == 2) {
+			board.takePins(pinsToTake);
+		} else {
+			System.out.println("You can only take 1 or 2 pins. Try again...");
+			takePins(board); // recursive
+		}
+
+	}
+}

@@ -1,0 +1,18 @@
+package game;
+
+import java.util.Random;
+
+public class ComputerPlayer extends Player {
+
+    @Override
+    protected String generateUserId() {
+        return "Bot-player";  // Hardcoded user-id
+    }
+
+    @Override
+    public void takePins(Board board) {
+        Random random = new Random();
+    	int randomNum = random.nextInt(2) + 1;
+    	board.takePins(randomNum);
+    }
+}
