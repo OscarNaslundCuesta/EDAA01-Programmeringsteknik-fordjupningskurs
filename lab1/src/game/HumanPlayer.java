@@ -11,6 +11,8 @@ public class HumanPlayer extends Player {
 
 		int pinsToTake = UserInterface.askForInt("Human - how many pins do you want to take?:");
 		//int pinsToTake = scanner.nextInt();
+		
+		//kan ändra till while loop
 
 		if (pinsToTake == 1 || pinsToTake == 2) {
 			board.takePins(pinsToTake);

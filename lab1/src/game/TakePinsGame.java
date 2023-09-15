@@ -11,7 +11,7 @@ public class TakePinsGame {
 	public static void main(String[] args) {
 		
 		Board board = new Board(); // Create a new board obj
-		HumanPlayer human = new HumanPlayer("HumanPlayer"); // Create new player obj
+		Player human = new HumanPlayer("HumanPlayer"); // Create new player obj
 		//Player computer = new SmartComputerPlayer("ComputerPlayer"); // Create new computer obj
 		Player computer = new SmartComputerPlayer("ComputerPlayer"); // Create new smart computer obj
 		
