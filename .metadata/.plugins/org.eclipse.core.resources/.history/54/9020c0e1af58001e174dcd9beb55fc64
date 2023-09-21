@@ -1,0 +1,54 @@
+package textproc;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+
+public class GeneralWordCounter implements TextProcessor {
+	private Map<String, Integer> otherWordCount;
+	private Set<String> stopwords_lcl;
+	
+	public GeneralWordCounter(Set<String> stopwords) {
+		otherWordCount = new HashMap<>();
+		stopwords_lcl = stopwords;
+	}
+
+	@Override
+	public void process(String w) {
+		if (!(stopwords_lcl.contains(w))) {
+			if (otherWordCount.containsKey(w)) {
+				otherWordCount.put(w, otherWordCount.get(w) + 1);
+			}
+			else {
+				otherWordCount.put(w, 1); // first time
+			}
+		}
+	}
+
+	@Override
+	public void report() {
+		
+		Set<Map.Entry<String, Integer>> wordSet = otherWordCount.entrySet();
+		List<Map.Entry<String, Integer>> wordList = new ArrayList<>(wordSet);
+		
+		wordList.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
+
+		
+		System.out.println("Top 5:");
+		for (int i=0; i < 5; i++) {
+			System.out.println(wordList.get(i));
+		}
+		
+		//for (String key : otherWordCount.keySet()) {
+		//	if (otherWordCount.get(key) >= 200) {
+		//		System.out.println(key + ": " + otherWordCount.get(key));
+		//	}
+		//}
+		
+	}
+
+}

@@ -1,0 +1,26 @@
+package textproc;
+
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.Set;
+
+public class GeneralWordCounter implements TextProcessor {
+	private HashMap<String, Integer> landskapCount;
+	
+	public GeneralWordCounter(Set<String> stopwords) {
+		
+	}
+
+	@Override
+	public void process(String w) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void report() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,27 @@
+package textproc;
+
+import java.util.Scanner;
+import java.util.Set;
+
+public class GeneralWordCounter implements TextProcessor {
+	
+	public GeneralWordCounter(Set<String> generalW) {
+		Scanner scan = new Scanner(new File("undantagsord.txt"));
+		Set<String> stopwords = ...; // en lämplig mängd skapas
+		... ... // orden läses in från Scannern
+		... ... // ’scan’ och lagras i mängden
+	}
+
+	@Override
+	public void process(String w) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void report() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,33 @@
+package textproc;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class MultiWordCounter implements TextProcessor {
+	private HashMap<String, Integer> landskapCount;
+	
+	
+	public MultiWordCounter(String[] landskapsLista) {
+		landskapCount = new HashMap<>();
+		for (String landskap : landskapsLista) {
+			landskapCount.put(landskap, 0);
+		}
+	}
+	
+	@Override
+	public void process(String w) {
+		if (landskapCount.containsKey(w)) {  //ändrade från ==
+			landskapCount.put(w, landskapCount.get(w) + 1);
+		}
+		
+	}
+
+	@Override
+	public void report() {
+		for (String key : landskapCount.keySet()) {
+			System.out.println(key + ": " + landskapCount.get(key));
+		}
+		
+	}
+
+}
