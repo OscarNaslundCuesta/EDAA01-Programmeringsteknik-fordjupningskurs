@@ -1,0 +1,70 @@
+package textproc;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeMap;
+
+public class GeneralWordCounter implements TextProcessor {
+	private Map<String, Integer> otherWordCount;
+	private Set<String> stopwords_lcl;
+	
+	public GeneralWordCounter(Set<String> stopwords) {
+		otherWordCount = new TreeMap<>();
+		stopwords_lcl = stopwords;
+	}
+
+	@Override
+	public void process(String w) {
+		if (!(stopwords_lcl.contains(w))) {
+			if (otherWordCount.containsKey(w)) {
+				otherWordCount.put(w, otherWordCount.get(w) + 1);
+			}
+			else {
+				otherWordCount.put(w, 1); // first time
+			}
+		}
+	}
+
+	@Override
+	public void report() {
+		
+		Set<Map.Entry<String, Integer>> wordSet = otherWordCount.entrySet();
+		List<Map.Entry<String, Integer>> wordList = new ArrayList<>(wordSet);
+		
+	    Comparator<Map.Entry<String, Integer>> comparator = (entry1, entry2) -> {
+	        int valueComparison = entry2.getValue().compareTo(entry1.getValue());
+
+	        if (valueComparison == 0) {
+	            return entry1.getKey().compareTo(entry2.getKey());
+	        }
+
+	        return valueComparison;
+	    };
+		
+		wordList.sort(comparator);
+
+
+		for (int i=0; i < 15; i++) {
+			System.out.println(wordList.get(i));
+		}
+		
+		//for (String key : otherWordCount.keySet()) {
+		//	if (otherWordCount.get(key) >= 200) {
+		//		System.out.println(key + ": " + otherWordCount.get(key));
+		//	}
+		//}
+		
+		
+	}
+	
+	public List<Map.Entry<String, Integer>> getWordList() {
+	    return new ArrayList<>(otherWordCount.entrySet());
+		}
+
+}
