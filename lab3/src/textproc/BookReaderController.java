@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -76,7 +77,7 @@ public class BookReaderController {
 		
 		
 		sButton.addActionListener(e -> {
-		    String query = sBar.getText();  // hämta sökning
+		    String query = sBar.getText().toLowerCase().replace(" ", "");  // hämta sökning och rätta till query
 		    int index = -1; 				// -1 = inte hittad
 		    
 		    index = list.getNextMatch(query, 0, Position.Bias.Forward);
@@ -93,8 +94,13 @@ public class BookReaderController {
 		    	list.setSelectedIndex(index);
 		    	list.ensureIndexIsVisible(index);
 		    }
+		    else {
+		    	JOptionPane.showMessageDialog(null, "Word not found", "Fatal error!", JOptionPane.INFORMATION_MESSAGE);
+		    }
 		    
 		});
+		
+		frame.getRootPane().setDefaultButton(sButton);  // enter för att söka
 
 
 	}
