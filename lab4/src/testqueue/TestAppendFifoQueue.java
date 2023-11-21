@@ -33,7 +33,8 @@ class TestAppendFifoQueue {
 	@Test
 	void testConcatEmpty() {
 		qA.append(qB);
-
+		
+		assertEquals(0, qA.size(), "Wrong size after concatenation");
 		assertTrue(qA.isEmpty(), "qA not empty after concatenation");
 		assertTrue(qB.isEmpty(), "qB not empty after concatenation");
 	}

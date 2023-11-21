@@ -29,7 +29,7 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 			last = newNode;
 			newNode.next = newNode; // =newNode?
 		} else {
-			newNode.next = last.next;
+			newNode.next = last.next;  // newnode.next = första element
 			last.next = newNode;
 			last = newNode;
 		}
@@ -75,7 +75,7 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 		QueueNode<E> firstNode = last.next;
 
 		if (last == last.next) { // only one node in queue
-			last = null;
+			last = null;  //LAST.NEXT ???
 		} else {
 			last.next = firstNode.next; // multiple nodes left
 		}
@@ -150,13 +150,13 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 			return;
 		}
 		
-		if (last == null) {
-			last = q.last;
+		if (last == null) { // tom queueu
+			this.last = q.last;
 		} else {
 			QueueNode<E> previousFirst = last.next; //save first node of this
 			last.next = q.last.next; //connect last of this to first of q
 			last = q.last;  //update last label
-			q.last.next = previousFirst; //connect last of q to first of this
+			last.next = previousFirst; //connect last of q to first of this
 			
 		}
 		
