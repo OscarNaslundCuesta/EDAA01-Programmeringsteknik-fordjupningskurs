@@ -1,6 +1,7 @@
 package mountain;
 
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 import fractal.*;
 
@@ -41,10 +42,24 @@ public class Mountain extends Fractal {
 		turtle.forwardTo(p2.getX(), p2.getY());
 	}
 	
-	public Point getMid(Point p1, Point p2) {
+	public Point getMid(Point p1, Point p2, double dev) {		
+		Side side = new Side(p1, p2);
+		
+		
+		if (sideMap.containsKey(side)) {
+			Point midPoint = sideMap.get(side);
+			//sideMap.remove(side);
+			System.out.println("old midpoint!");
+			return midPoint; //return old mid-point
+		}
+				
     	int midX = ((p1.getX() + p2.getX()) / 2) + (int) RandomUtilities.randFunc(dev);
     	int midY = ((p1.getY() + p2.getY()) / 2) + (int) RandomUtilities.randFunc(dev);
-    	return new Point(midX, midY);
+    	
+    	Point midPoint = new Point(midX, midY);
+    	sideMap.put(side, midPoint);
+    	
+    	return midPoint;
 	}
 
 	/* 
@@ -56,9 +71,9 @@ public class Mountain extends Fractal {
 			drawLine(turtle, p2, p3);
 			drawLine(turtle, p3, p1);
 		} else {
-			Point midP1P2 = getMid(p1, p2);
-	        Point midP2P3 = getMid(p2, p3);
-	        Point midP3P1 = getMid(p3, p1);
+			Point midP1P2 = getMid(p1, p2, dev);
+	        Point midP2P3 = getMid(p2, p3, dev);
+	        Point midP3P1 = getMid(p3, p1, dev);
 
 	        fractalLine(turtle, order - 1, p1, midP1P2, midP3P1, dev/2);
 	        fractalLine(turtle, order - 1, p2, midP2P3, midP1P2, dev/2);
