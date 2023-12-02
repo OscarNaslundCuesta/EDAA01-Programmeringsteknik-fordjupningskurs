@@ -9,13 +9,19 @@ public class Side {
     }
 	
 	//@Override
-	public boolean equals(Side side2) {
-	return (this.p1 == side2.p1 && this.p2 == side2.p2 || this.p1 == side2.p2 && this.p2 == side2.p1);
+	public boolean equals(Side obj) {
+	return (this.p1 == obj.p1 && this.p2 == obj.p2 || this.p1 == obj.p2 && this.p2 == obj.p1);
 	}
 	
+	//not used
 	@Override
 	public int hashCode() {
 	return p1.hashCode() + p2.hashCode();
+	}
+	
+	@Override
+	public String toString() {
+	    return "Side[p1=" + p1 + ", p2=" + p2 + "]";
 	}
 
 }

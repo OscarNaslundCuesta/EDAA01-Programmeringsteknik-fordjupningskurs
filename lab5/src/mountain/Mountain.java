@@ -1,8 +1,6 @@
 package mountain;
 
 import java.util.HashMap;
-import java.util.Map.Entry;
-
 import fractal.*;
 
 public class Mountain extends Fractal {
@@ -34,6 +32,7 @@ public class Mountain extends Fractal {
 	 */
     @Override
 	public void draw(TurtleGraphics turtle) {
+    	sideMap.clear();
     	fractalLine(turtle, order, p1, p2, p3, dev);
 	}
     
@@ -43,21 +42,21 @@ public class Mountain extends Fractal {
 	}
 	
 	public Point getMid(Point p1, Point p2, double dev) {		
-		Side side = new Side(p1, p2);
+		Side side = sideMap.keySet().stream()
+			.filter(s -> s.equals(new Side(p1, p2)))
+			.findFirst()
+			.orElse(null);
 		
-		
-		if (sideMap.containsKey(side)) {
-			Point midPoint = sideMap.get(side);
-			//sideMap.remove(side);
-			System.out.println("old midpoint!");
-			return midPoint; //return old mid-point
+		if (side != null) {
+			return sideMap.remove(side);
 		}
 				
     	int midX = ((p1.getX() + p2.getX()) / 2) + (int) RandomUtilities.randFunc(dev);
     	int midY = ((p1.getY() + p2.getY()) / 2) + (int) RandomUtilities.randFunc(dev);
     	
+    	Side newSide = new Side(p1, p2);
     	Point midPoint = new Point(midX, midY);
-    	sideMap.put(side, midPoint);
+    	sideMap.put(newSide, midPoint);
     	
     	return midPoint;
 	}

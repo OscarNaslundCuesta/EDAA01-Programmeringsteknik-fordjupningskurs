@@ -10,7 +10,7 @@ public class FractalApplication {
 		Point p1 = new Point(100, 20);
 		Point p2 = new Point(20, 500);
 		Point p3 = new Point(580, 480);
-		fractals[0] = new Mountain(p1, p2, p3, 5);
+		fractals[0] = new Mountain(p1, p2, p3, 30);
 		fractals[1] = new Koch(300);
 	    new FractalView(fractals, "Fraktaler", 600, 600);
 	}
