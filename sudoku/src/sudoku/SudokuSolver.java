@@ -1,36 +1,45 @@
 package sudoku;
 
+import java.util.Arrays;
+
 public class SudokuSolver implements SudokuSolverInterface {
     private int[][] grid;
 
     public SudokuSolver(int[][] input_grid) {
     	this.grid = input_grid;
     }
-    
 
+	
     @Override
     public boolean solve() {
-    	if (isAllValid()) {		//check instantly if unsolvable due to input
-	        for (int row = 0; row < 9; row++) {
-	            for (int col = 0; col < 9; col++) {
-	                if (grid[row][col] == 0) {
-	                    for (int number = 1; number <= 9; number++) {
-	                        if (isValid(row, col, number)) {
-	                            grid[row][col] = number;
-	
-	                            if (solve()) {
-	                                return true;
-	                            } else {
-	                                grid[row][col] = 0;
-	                            }
-	                        }
-	                    }
-	                    return false;
-	                }
-	            }
-	        }
-    	}
-        return isAllValid(); //might work with return true also (extra safety)
+    	return solve_h(0, 0);
+    }
+    
+    private boolean solve_h(int row, int col) {
+    	if (row == 9) {
+            return true;
+        }
+
+        int nextRow = (col == 8) ? row + 1 : row;	//advance if at last
+        int nextCol = (col == 8) ? 0 : col + 1;
+
+        if (grid[row][col] != 0) {
+            return solve_h(nextRow, nextCol);
+        }
+
+        for (int number = 1; number <= 9; number++) {
+            if (isValid(row, col, number)) {
+                grid[row][col] = number;
+
+                if (solve_h(nextRow, nextCol)) {
+                    return true;
+                }
+
+                grid[row][col] = 0;
+            }
+        }
+
+        return false;
     }
 
     @Override
@@ -125,6 +134,10 @@ public class SudokuSolver implements SudokuSolverInterface {
 
     @Override
     public int[][] getGrid() {
-        return grid;
+    	int[][] copy = new int[grid.length][];
+        for (int i = 0; i < grid.length; i++) {
+            copy[i] = Arrays.copyOf(grid[i], grid[i].length);
+        }
+        return copy;
     }
 }
